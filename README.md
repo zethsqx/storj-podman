@@ -3,9 +3,20 @@
 ## Overview
 Storj node uses docker as the container engine. There is some difference for updating the storj node when using docker vs podman
 
+1. Setup storj 
+https://documentation.storj.io/setup/cli/storage-node
+2. Configure auto update
+https://documentation.storj.io/setup/cli/software-updates
+
+* when in doubt, just follow official docs and use docker. Deploying production storj node differently from the official docs might risk it being disqualified or suspended if
+- consistent fail update of the storj node version
+- update crashes the node 
+- container created problem with disk and data corrupted
+
 #### Docker
 - recommended by storj to use their watchtower
-- uses the docker daemon to maintain the update
+- uses watch tower to update storj node container 
+- underlying docker is its daemon
 
 #### Podman
 - uses podman built in auto update services
@@ -20,7 +31,6 @@ yum update podman -y
 ```
 
 2. Set --label "io.containers.autoupdate=image"
-3. User FQIN
 4. Run container with (FQIN). If it is running, stop and rerun.
 ```
 podman run --privileged -d --label "io.containers.autoupdate=image" --restart unless-stopped --stop-timeout 300 -p 28967:28967 -p 14002:14002 -e WALLET=<redacted> -e EMAIL=<example@email.com> -e ADDRESS=<ddns:port> -e STORAGE="838GB" --mount type=bind,source="/root/.local/share/storj/identity/storagenode",destination=/app/identity --mount type=bind,source="/mnt/storj",destination=/app/config --name storagenode docker.io/storjlabs/storagenode:latest
