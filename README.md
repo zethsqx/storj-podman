@@ -3,13 +3,13 @@
 ## Overview
 Storj node uses docker as the container engine. There is some difference for updating the storj node when using docker vs podman
 
-1. Setup storj 
+1. Setup storj  
 https://documentation.storj.io/setup/cli/storage-node
-2. Configure auto update
+2. Configure auto update  
 https://documentation.storj.io/setup/cli/software-updates
 
-> **- When in doubt, just follow official docs and use docker**  
-> **- Deploying production storj node differently from the official docs might risk it being disqualified or suspended**
+> ** When in doubt, just follow official docs and use docker**  
+> ** Deploying production storj node differently from the official docs might risk it being disqualified or suspended**
 >> a. consistent fail update of the storj node version  
 >> b. update crashes the node  
 >> c. container created problem with disk and data corrupted  
