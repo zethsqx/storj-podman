@@ -10,9 +10,10 @@ https://documentation.storj.io/setup/cli/software-updates
 
 > ** When in doubt, just follow official docs and use docker**  
 > ** Deploying production storj node differently from the official docs might risk it being disqualified or suspended**
+>> Possible problem includes:
 >> a. consistent fail update of the storj node version  
 >> b. update crashes the node  
->> c. container created problem with disk and data corrupted  
+>> c. container mounting created problem with disk and data becomes corrupted  
 
 #### Docker
 - recommended by storj to use their watchtower
@@ -32,7 +33,7 @@ yum update podman -y
 ```
 
 2. Set --label "io.containers.autoupdate=image"
-4. Run container with (FQIN). If it is running, stop and rerun.
+4. Run container with fully-qualified image name (FQIN). If it is running, stop and rerun.
 ```
 podman run --privileged -d \
 --label "io.containers.autoupdate=image" \
@@ -75,7 +76,7 @@ Useful links
 - http://docs.podman.io/en/latest/markdown/podman-generate-systemd.1.html
 - https://github.com/containers/podman/blob/v2.0/docs/source/markdown/podman-auto-update.1.md
 
-## Testing Podman auto update
+## Testing podman auto update (using storjlabs/watchtower)
 ```
 podman pull storjlabs/watchtower:i386-0.3.8-patch1
 podman image tag storjlabs/watchtower:i386-0.3.8-patch1 docker.io/storjlabs/watchtower:latest
