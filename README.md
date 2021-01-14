@@ -51,7 +51,7 @@ docker.io/storjlabs/storagenode:latest
 ```
 
 5. Generate user systemd to the userfolder and softlink it to system level
-6. Reload, enable and start the service (the running container will restart)
+6. Reload, enable and start the container-storagenode.service (the running container will restart)
 ```
 cd /etc/systemd/user
 podman generate systemd --new --files --name storagenode
@@ -61,8 +61,8 @@ systemctl enable container-storagenode.service
 systemctl start container-storagenode.service
 ```
 
-7. Generate user systemd to the userfolder and softlink it to system level
-8. If required, change podman-auto-update to desired (eg. OnCalendar=*-*-* 14:27:00) 
+7. Reload, enable and start the podman-auto-update.timer systemd
+8. OPTIONAL: change podman-auto-update to desired (eg. OnCalendar=*-*-* 14:27:00) 
 ```
 cat /usr/lib/systemd/system/podman-auto-update.timer
 systemctl daemon-reload
