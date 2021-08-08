@@ -8,12 +8,13 @@ https://documentation.storj.io/setup/cli/storage-node
 2. Configure auto update  
 https://documentation.storj.io/setup/cli/software-updates
 
-> ** When in doubt, just follow official docs and use docker**  
-> ** Deploying production storj node differently from the official docs might risk it being disqualified or suspended**
->> Possible problem includes:
->> a. consistent fail update of the storj node version  
->> b. update crashes the node  
->> c. container mounting created problem with disk and data becomes corrupted  
+#### Risks for non-official steps:    
+- Consistent fail update of the storj node version    
+- Update crashes the node    
+- Container mounting created problem with disk and data becomes corrupted  
+
+<sub>* When in doubt, just follow official docs and use docker </sub>  
+<sub>** Deploying production storj node differently from the official docs might risk it being disqualified or suspended </sub>  
 
 #### Docker
 - recommended by storj to use their watchtower
