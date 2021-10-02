@@ -33,11 +33,11 @@ https://documentation.storj.io/setup/cli/software-updates
 yum update podman -y
 ```
 
-2. Set --label "io.containers.autoupdate=image"
+2. Set --label "io.containers.autoupdate=registry"
 4. Run container with fully-qualified image name (FQIN). If it is running, stop and rerun.
 ```
 podman run --privileged -d \
---label "io.containers.autoupdate=image" \
+--label "io.containers.autoupdate=registry" \
 --restart unless-stopped \
 --stop-timeout 300 \
 -p 28967:28967 -p 14002:14002 \
