@@ -38,8 +38,8 @@ yum update podman -y
 ```
 podman run --privileged -d \
 --label "io.containers.autoupdate=registry" \
---restart unless-stopped \
---stop-timeout 300 \
+## --restart unless-stopped \
+## --stop-timeout 300 \
 -p 28967:28967 -p 14002:14002 \
 -e WALLET=<redacted> \
 -e EMAIL=<example@email.com> \
@@ -56,6 +56,8 @@ docker.io/storjlabs/storagenode:latest
 ```
 cd /etc/systemd/user
 podman generate systemd --new --files --name storagenode
+## podman generate systemd --restart-policy=always --time 300 --new --files --name storagenode
+chmod 755 container-storagenode.service
 ln -s /etc/systemd/user/container-storagenode.service /etc/systemd/system/container-storagenode.service
 systemctl daemon-reload
 systemctl enable container-storagenode.service
@@ -76,6 +78,7 @@ Useful links
 - https://www.redhat.com/sysadmin/improved-systemd-podman
 - http://docs.podman.io/en/latest/markdown/podman-generate-systemd.1.html
 - https://github.com/containers/podman/blob/v2.0/docs/source/markdown/podman-auto-update.1.md
+- https://docs.podman.io/en/latest/markdown/podman-auto-update.1.html
 
 ## Testing podman auto update (using storjlabs/watchtower)
 ```
@@ -90,3 +93,14 @@ podman stop watchtower
 podman rm watchtower
 ```
 
+## Testing Auto Update from the documentation
+```
+### Check if a newer image is available
+$ podman auto-update --dry-run --format "{{.Image}} {{.Updated}}"
+registry.fedoraproject.org/fedora:latest   pending
+
+### Autoupdate the services
+$ podman auto-update
+UNIT                    CONTAINER            IMAGE                                     POLICY      UPDATED
+container-test.service  08fd34e533fd (test)  registry.fedoraproject.org/fedora:latest  registry    false
+```
