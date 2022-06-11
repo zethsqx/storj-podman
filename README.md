@@ -40,7 +40,8 @@ podman run --privileged -d \
 --label "io.containers.autoupdate=registry" \
 ## --restart unless-stopped \
 ## --stop-timeout 300 \
--p 28967:28967 -p 14002:14002 \
+-p 28967:28967/tcp -p 28967:28967/udp \
+-p 14002:14002 \
 -e WALLET=<redacted> \
 -e EMAIL=<example@email.com> \
 -e ADDRESS=<ddns:port> \
