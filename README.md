@@ -55,7 +55,7 @@ docker.io/storjlabs/storagenode:latest
 6. Reload, enable and start the container-storagenode.service (the running container will restart)
 ```
 cd /etc/systemd/user
-podman generate systemd --new --files --name storagenode
+podman generate systemd --restart-policy=always --new --files --name storagenode
 ## podman generate systemd --restart-policy=always --time 300 --new --files --name storagenode
 chmod 755 container-storagenode.service
 ln -s /etc/systemd/user/container-storagenode.service /etc/systemd/system/container-storagenode.service
