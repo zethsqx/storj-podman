@@ -55,6 +55,9 @@ docker.io/storjlabs/storagenode:latest
 5. Generate user systemd to the userfolder and softlink it to system level
 6. Reload, enable and start the container-storagenode.service (the running container will restart)
 ```
+rm -rf /etc/systemd/user/container-storagenode.service
+rm -rf /etc/systemd/system/container-storagenode.service
+
 cd /etc/systemd/user
 podman generate systemd --restart-policy=always --new --files --name storagenode
 ## podman generate systemd --restart-policy=always --time 300 --new --files --name storagenode
